@@ -10,10 +10,8 @@ module ApplicationHelper
 
   def search_cast(movie_params)
       @movies=Tmdb::Search.movie(movie_params)
-      p @movies
       cast=[]
       @movies.results.each do |movie|
-          p movie.id
           person=Tmdb::Movie.cast(movie.id).first
           unless person.nil?
               cast.append("name"=> person.name,
